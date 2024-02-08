@@ -2,7 +2,9 @@ import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
 import { ProducerService } from './producer.service';
 import { SendJobDto } from './dto/send-msg.dto';
 import { SQS_RESPONSE } from 'src/common/sqs.response';
+import { ApiBadRequestResponse, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('producer')
 @Controller('producer')
 export class ProducerController {
   constructor(private readonly producerService: ProducerService) { }
@@ -14,6 +16,9 @@ export class ProducerController {
    * from the provided DTO and using the ProducerService to send the message to a message queue.
    */
   @Post('sendMessage')
+  @ApiBody({ type: SendJobDto }) 
+  @ApiResponse({ status: 200, description: 'Message sent successfully.' })
+  @ApiBadRequestResponse({ description: 'Error sending message.' })
   async sendMessage(@Body(ValidationPipe) sendJobDto: SendJobDto) {
     try {
       const { message, jobType, messageGroupId } = sendJobDto;
