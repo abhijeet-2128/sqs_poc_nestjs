@@ -60,6 +60,15 @@ SqsModule.register({
   ],
 }),
 ```
+## AWS SDK for JavaScript (v3) - @aws-sdk/client-sqs
+
+The `@aws-sdk/client-sqs` package is part of the AWS SDK for JavaScript version 3 (v3). It provides a client interface for interacting with Amazon Simple Queue Service (SQS) from a Node.js application.
+
+### Features
+
+- **Send Message**: Send messages to an SQS queue.
+- **Receive Message**: Receive and process messages from an SQS queue.
+- **Delete Message**: Delete messages from an SQS queue after processing.
 
 ## Advanced Configuration
 To enable content-based deduplication, set contentBasedDeduplication to true :(FIFO Queue) using amazon console options for queue configuration.
